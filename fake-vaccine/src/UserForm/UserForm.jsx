@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import {useDispatch,useSelector} from 'react-redux'
 
 const UserFormWrapper = styled.div({
     display: 'flex',
@@ -15,37 +16,49 @@ const InputWrapper = styled.div({
     width: 200,
 })
 
-const UserForm = () => 
-<UserFormWrapper>
+const UserForm = () => {
+    const dispatch = useDispatch()
+    let qrValue = useSelector(state => state.qr)
     
-        <InputWrapper>
-            <span>Фамилия</span>
-            <input type="text" />
-        </InputWrapper>
-        <InputWrapper>
-            <span>Имя</span>
-            <input type="text" />
-        </InputWrapper>
-        <InputWrapper>
-            <span>Отчество</span>
-            <input type="text" />
-        </InputWrapper>
-        <InputWrapper>
-            <span>Дата рождения</span>
-            <input type="text" />
-        </InputWrapper>
-        <InputWrapper>
-            <span>Номер</span>
-            <input type="text" />
-        </InputWrapper>
-        <InputWrapper>
-            <span>Серия</span>
-            <input type="text" />
-        </InputWrapper>
-        <InputWrapper>
-            <button>Сгенерировать QR</button>
-        </InputWrapper>
-        
-</UserFormWrapper>
+    
+    return(
+        <UserFormWrapper>
+            <div>{qrValue}</div>
+            <InputWrapper>
+                <span>Фамилия</span>
+                <input type="text" />
+            </InputWrapper>
+            <InputWrapper>
+                <span>Имя</span>
+                <input type="text" />
+            </InputWrapper>
+            <InputWrapper>
+                <span>Отчество</span>
+                <input type="text" />
+            </InputWrapper>
+            <InputWrapper>
+                <span>Дата рождения</span>
+                <input type="text" />
+            </InputWrapper>
+            <InputWrapper>
+                <span>Номер</span>
+                <input type="text" />
+            </InputWrapper>
+            <InputWrapper>
+                <span>Серия</span>
+                <input type="text" />
+            </InputWrapper>
+            <InputWrapper>
+                <button onClick={()=>{
+                    console.log('DISPATCH')
+                    console.log(qrValue)
+                    dispatch({type:"setQR", payloader:"KRISTINKU-PAUKANA OBAZHAYU"})
+                    console.log(qrValue)
+                }}>Сгенерировать QR</button>
+            </InputWrapper>       
+        </UserFormWrapper>
+)}
+
+
 
 export default UserForm
