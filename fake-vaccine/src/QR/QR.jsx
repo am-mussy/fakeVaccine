@@ -10,19 +10,21 @@ let QRWrapper = styled.div({
 
 })
 
+
+
 const QR = () =>{
         
         const qrValue = useSelector(state => state.qr)
-        
-            console.log(qrValue)
-        
+        console.log(qrValue)     
         const dispatch = useDispatch()
         const setQrValue = () => {
-             dispatch({type:"setQR", payloader:"KRISTINKU-PAUKANA OBAZHAYU"})
+            dispatch({type:"setQR", payloader:"KRISTINKU-PAUKANA OBAZHAYU"})
+            dispatch({type:"numberPlus"})
             
         }
     return(
         <QRWrapper>
+       
             <QRCode value={qrValue} />
             <button onClick={setQrValue} >X</button>
         </QRWrapper>
