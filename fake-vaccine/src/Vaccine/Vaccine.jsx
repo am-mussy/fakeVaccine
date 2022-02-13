@@ -45,13 +45,16 @@ const Vaccine = () => {
 
     return(
         <VaccineWrapper>
-        {isLoading ? <Loader/> : ""}
-       
-        <Header/>
-        <GreenScrean/>
-        <UntilDate/>
-        <UserDate/>
-        <CloseButton href={'https://www.gosuslugi.ru/'}>Закрыть</CloseButton>
+        {isLoading ? <Loader/> : 
+        <>
+            <Header/>
+            <GreenScrean/>
+            <UntilDate/>
+            <UserDate/>
+            <CloseButton href={'https://www.gosuslugi.ru/'}>Закрыть</CloseButton>
+        </>}
+        
+        
         
     </VaccineWrapper>
     )
