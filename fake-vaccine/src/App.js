@@ -7,7 +7,6 @@ import NavBar from "./NavBar/NavBar";
 
 const App = () => (
   <div className="App">
-    <div>HELL IN THIS WORLD</div>
     {window.location.pathname === "/qr" ? "" : <NavBar />}
     <Routes>
       <Route path="/vaccine" element={<Vaccine />} />
