@@ -30,7 +30,12 @@ const getUrlUserDate = () => {
     
     urlRaw.map((value, index) => {
         let valueRaw = value.split('=')
-        userDateObj[valueRaw[0]] = valueRaw[1]
+        if(valueRaw[1][0].charCodeAt() > 122){
+            userDateObj[valueRaw[0]] = encodeURI(valueRaw[1])
+        } else {
+            userDateObj[valueRaw[0]] = valueRaw[1]
+        }
+        
         
     })
 
@@ -48,7 +53,7 @@ const  UserDate = () =>{
     return (
         <UserDateWrapper>
             <TextWrapper>
-                <span>{userDate.name} {userDate.lastName} {userDate.surname}</span>
+                <span>{decodeURI(userDate.name)} {decodeURI(userDate.lastName)} {decodeURI(userDate.surname)}</span>
                 <span>Дата рождения:{userDate.birthday}</span>
                 <span>Паспорт: {userDate.seria} {userDate.number}</span>
             </TextWrapper>

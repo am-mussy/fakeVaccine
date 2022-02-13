@@ -23,15 +23,15 @@ const UserForm = () => {
     let userDate = useSelector(state => state.userDate)
     const setUserDate = () => {
         const userDate = {
-            name: name1,
-            lastName: name2,
-            surname: name3,
+            name: encodeURI(name1),
+            lastName: encodeURI(name2),
+            surname: encodeURI(name3),
             birthday: date,
             number: number,
             seria: seria
             
         }
-        dispatch({type:"SET_USER_DATE", payload: userDate})
+        dispatch({type:"SET_USER_DATE_FOR_URL", payloader: userDate})
         
     }
     const [name1, setName1] = useState('')
@@ -73,8 +73,8 @@ const UserForm = () => {
             </InputWrapper>
             <InputWrapper>
                 <Link to='/qr'>
-                    <button onClick={setUserDate}>Сгенерировать QR</button>
-                </Link>
+                    <button onClick={setUserDate} >Сгенерировать QR</button>
+                </Link>        
             </InputWrapper>       
         </UserFormWrapper>
 )}

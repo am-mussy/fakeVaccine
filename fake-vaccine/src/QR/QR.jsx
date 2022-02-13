@@ -2,31 +2,43 @@ import styled from "@emotion/styled";
 import QRCode from "react-qr-code";
 import { useSelector, useDispatch } from "react-redux";
 
-let QRWrapper = styled.div({
+const QRWrapper = styled.div({
     display: 'flex',
     flexDirection: 'column',
     alignItems:'center',
     textAlign: 'center',
+    marginTop: 250,
 
 })
 
+const QRCodeStyled = styled(QRCode)({
+    transform: 'scale(2)'
+})
+
+
+const urlForQRgenerator = (userDate) => {
+    let url = `${window.location.origin}/vaccine?`
+    let key
+    for(key in userDate){
+        url+=key
+        url+='='
+        url+=userDate[key]
+        url+='&'
+    }
+    url = url.slice(0,-1)
+
+    return url
+}
 
 
 const QR = () =>{
-        
-        const qrValue = useSelector(state => state.qr)
-        console.log(qrValue)     
-        const dispatch = useDispatch()
-        const setQrValue = () => {
-            dispatch({type:"setQR", payloader:"KRISTINKU-PAUKANA OBAZHAYU"})
-            dispatch({type:"numberPlus"})
-            
-        }
+
+    const userDate = useSelector(state => state.userDateUrl)
+    
+
     return(
         <QRWrapper>
-       
-            <QRCode value={qrValue} />
-            <button onClick={setQrValue} >X</button>
+            <QRCodeStyled value={urlForQRgenerator(userDate)} />
         </QRWrapper>
     )}
 

@@ -10,7 +10,7 @@ export const userReducer = (state = defaultState, action) => {
       return { ...state, qr: action.payloader };
     case "SET_USER_DATE":
       return { ...state, userDate: action.payloader };
-    case "SET_USER_DATE_URL":
+    case "SET_USER_DATE_FOR_URL":
       return { ...state, userDateUrl: action.payloader };
     default:
       return state;
