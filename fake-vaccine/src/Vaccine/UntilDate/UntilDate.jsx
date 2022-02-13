@@ -15,7 +15,7 @@ const UntilDateWrapper = styled.div({
 const UntilDate = () => 
 <UntilDateWrapper>
     <img src={date} alt="" />
-    <span>Действует до 02.12.2022</span>
+    <span>Действует до 02.12.{new Date().getFullYear() + 1}</span>
 </UntilDateWrapper>
 
 export default UntilDate
