@@ -42,6 +42,53 @@ const getUrlUserDate = () => {
     return userDateObj
 }
 
+const userSimblToStar = (str, param) => {
+
+    
+    if(str){
+        let newStr = ''
+    switch (param) {
+        case 's':
+            
+            newStr = str[0] + str[1];
+
+            for(let i = 2; i <= str.length; i++)
+            {   
+                
+                newStr += '*'
+               
+            }
+        
+            return newStr
+
+        case 'n':
+            newStr = '***';
+
+            for(let i = 3; i < str.length; i++)
+            {
+                newStr += str[i]
+            }
+        
+            return newStr
+            
+    
+        default:
+            newStr = str[0];
+
+            for(let i = 0; i < str.length; i++)
+            {
+                newStr += '*'
+            }
+        
+            return newStr
+            
+    }
+    }
+    
+
+   
+}
+
 const  UserDate = () =>{
     const userDate = useSelector(state => state.userDate)
     const dispatch = useDispatch()
@@ -50,15 +97,18 @@ const  UserDate = () =>{
         dispatch({type:"SET_USER_DATE", payloader: userDateFromURL})
     }
     
+
     return (
         <UserDateWrapper>
             <TextWrapper>
-                <span>{decodeURI(userDate.name)} {decodeURI(userDate.lastName)} {decodeURI(userDate.surname)}</span>
+                <span>{userSimblToStar(decodeURI(userDate.name))} {userSimblToStar(decodeURI(userDate.lastName))} {userSimblToStar(decodeURI(userDate.surname))}</span>
                 <span>Дата рождения:{userDate.birthday}</span>
-                <span>Паспорт: {userDate.seria} {userDate.number}</span>
+                <span>Паспорт: {userSimblToStar(userDate.seria, 's')} {userSimblToStar(userDate.number, 'n')}</span>
             </TextWrapper>
         </UserDateWrapper>
     )
 }
 
 export default UserDate
+
+// 

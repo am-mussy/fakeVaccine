@@ -3,6 +3,8 @@ import styled from "@emotion/styled"
 import GreenScrean from "./GreenScrean/GreenScrean"
 import UntilDate from './UntilDate/UntilDate'
 import UserDate from './UserDate/UserDate'
+import Loader from "../Loader/Loader"
+import { useEffect, useState } from "react"
 
 const VaccineWrapper = styled.div(
     {
@@ -28,13 +30,32 @@ const CloseButton = styled.a({
 
 })
 
-const Vaccine = () => 
-    <VaccineWrapper>
+let mount = false
+
+const Vaccine = () => {
+
+    const [isLoading, setLoading] = useState(true);
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setLoading(false)
+        }, 3000);
+        
+    })
+
+    return(
+        <VaccineWrapper>
+        {isLoading ? <Loader/> : ""}
+       
         <Header/>
         <GreenScrean/>
         <UntilDate/>
         <UserDate/>
         <CloseButton href={'https://www.gosuslugi.ru/'}>Закрыть</CloseButton>
+        
     </VaccineWrapper>
+    )
+}
+    
 
 export default Vaccine
