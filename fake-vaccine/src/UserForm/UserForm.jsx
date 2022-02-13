@@ -41,9 +41,6 @@ const UserForm = () => {
     const [number, setNumber] = useState('')
     const [seria, setSeria] = useState('')
     
-    console.log(name1,name2,name3,date,number,seria)
-    console.log(userDate)
-
     return(
         <UserFormWrapper>
            
@@ -64,12 +61,12 @@ const UserForm = () => {
                 <input type="text" onInput={e => setDate(e.target.value)}/>
             </InputWrapper>
             <InputWrapper>
-                <span>Номер</span>
-                <input type="text" onInput={e => setNumber(e.target.value)}/>
-            </InputWrapper>
-            <InputWrapper>
                 <span>Серия</span>
                 <input type="text" onInput={e => setSeria(e.target.value)}/>
+            </InputWrapper>
+            <InputWrapper>
+                <span>Номер</span>
+                <input type="text" onInput={e => setNumber(e.target.value)}/>
             </InputWrapper>
             <InputWrapper>
                 <Link to='/qr'>
