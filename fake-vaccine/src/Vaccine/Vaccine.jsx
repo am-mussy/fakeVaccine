@@ -13,7 +13,12 @@ const VaccineWrapper = styled.div(
         width: 349,
         margin: '0 auto',
         marginTop: 56,
-        height: 554
+        height: 554,
+
+        '@media(max-width: 700px)': {
+            transform: 'scale(0.7)',
+            marginTop: '0 !important'
+          },
     }
 )
 

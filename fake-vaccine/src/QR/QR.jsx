@@ -7,12 +7,15 @@ const QRWrapper = styled.div({
     flexDirection: 'column',
     alignItems:'center',
     textAlign: 'center',
-    marginTop: 250,
-
+    marginTop: 100
 })
 
 const QRCodeStyled = styled(QRCode)({
-    transform: 'scale(2)'
+    
+    '@media(max-width: 400px)': {
+        transform: 'scale(0.5)',
+        marginTop: '0 !important'
+      },
 })
 
 
@@ -37,7 +40,12 @@ const QR = () =>{
     
 
     return(
-        <QRWrapper>
+        <QRWrapper css={{
+            
+            '@media(min-width: 420px)': {
+              color: 'orange'
+            }
+          }}>
             <QRCodeStyled value={urlForQRgenerator(userDate)} />
         </QRWrapper>
     )}
