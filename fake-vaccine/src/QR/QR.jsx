@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 import QRCode from "react-qr-code";
+import React, { useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import {
+    exportComponentAsJPEG,
+    exportComponentAsPDF,
+    exportComponentAsPNG
+  } from "react-component-export-image";
 
 const QRWrapper = styled.div({
     display: 'flex',
@@ -18,7 +24,6 @@ const QRCodeStyled = styled(QRCode)({
       },
 })
 
-
 const urlForQRgenerator = (userDate) => {
     let url = `${window.location.origin}/vaccine?`
     let key
@@ -33,22 +38,27 @@ const urlForQRgenerator = (userDate) => {
     return url
 }
 
+const QRcodePrint = React.forwardRef(({value}, ref) => (
+    <div ref={ref}>
+        <QRCodeStyled value={value} />
+    </div> 
+));
 
 const QR = () =>{
-
+    const componentRef = useRef();
     const userDate = useSelector(state => state.userDateUrl)
     
-
     return(
-        <QRWrapper css={{
-            
-            '@media(min-width: 420px)': {
-              color: 'orange'
-            }
-          }}>
-            <QRCodeStyled value={urlForQRgenerator(userDate)} />
+        <QRWrapper>
+            <QRcodePrint ref={componentRef} value={urlForQRgenerator(userDate)}/>
+            <button onClick={() => exportComponentAsPNG(componentRef)}>
+            SAVE 
+            </button>
         </QRWrapper>
-    )}
+    )
+}
 
 
 export default QR
+
+
